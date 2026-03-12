@@ -5,6 +5,7 @@ import {
   IdProps,
   NameProps
 } from './properties';
+import { TypeRefProps } from './properties/TypeRefProps';
 
 export default class DmnPropertiesProvider {
 
@@ -41,7 +42,8 @@ function GeneralGroup(element) {
 
   const entries = [
     ...NameProps({ element }),
-    ...IdProps({ element })
+    ...IdProps({ element }),
+    ...(element.businessObject.variable && element.businessObject.variable.typeRef ? TypeRefProps({ element }) : [])
   ];
 
   return {
