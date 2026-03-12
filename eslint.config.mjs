@@ -28,6 +28,12 @@ export default [
       files: files.build
     };
   }),
+  {
+    languageOptions: {
+      ecmaVersion: 2025
+    },
+    files: files.build
+  },
 
   // lib + test
   ...bpmnIoPlugin.configs.browser.map(config => {
@@ -67,7 +73,6 @@ export default [
   {
     languageOptions: {
       globals: {
-        sinon: true,
         require: true
       },
     },

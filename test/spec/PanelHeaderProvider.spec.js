@@ -1,3 +1,5 @@
+import { expect } from 'chai';
+
 import {
   render
 } from '@testing-library/preact/pure';
@@ -8,7 +10,7 @@ import {
   query as domQuery
 } from 'min-dom';
 
-import DmnModdle from 'dmn-moddle';
+import { DmnModdle } from 'dmn-moddle';
 
 import {
   insertCoreStyles

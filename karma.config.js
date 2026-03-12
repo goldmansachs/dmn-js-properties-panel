@@ -1,5 +1,3 @@
-/* eslint-env node */
-
 const path = require('path');
 const {
   DefinePlugin,
@@ -31,8 +29,7 @@ module.exports = function(karma) {
 
     frameworks: [
       'webpack',
-      'mocha',
-      'sinon-chai'
+      'mocha'
     ],
 
     files: [
@@ -63,6 +60,10 @@ module.exports = function(karma) {
           {
             test: /\.(css|dmn)$/,
             type: 'asset/source'
+          },
+          {
+            test: require.resolve('./test/globals.js'),
+            sideEffects: true
           },
           {
             test: /\.m?js$/,
