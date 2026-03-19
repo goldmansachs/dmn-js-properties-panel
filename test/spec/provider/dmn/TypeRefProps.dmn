@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" id="definitions" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
-    <inputData id="InputData_1" name="Input Data">
-      <variable id="Variable_1" name="Input Variable" typeRef="string" dmnElementRef="InputData_1"/>
-    </inputData>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="definitions_dish" name="Dish" namespace="http://camunda.org/schema/1.0/dmn">
+  <inputData id="dayType_id" name="Type of day">
+    <variable id="dayType_ii" name="Type of day" typeRef="string" />
+  </inputData>
+  <inputData id="temperature_id" name="Weather in Celsius">
+    <variable id="temperature_ii" name="Weather in Celsius" typeRef="integer" />
+  </inputData>
+  <decision id="literal-expression" name="It&#39;s lit">
+    <variable id="InformationItem_10cg57g" name="itsLit" typeRef="string" />
+    <literalExpression id="LiteralExpression_0bhgyiw" expressionLanguage="javascript">
+      <text>return "It's lit!";</text>
+    </literalExpression>
+  </decision>
+  <textAnnotation id="TextAnnotation_1t4zaz9">
+    <text>foobar</text>
+  </textAnnotation>
+  <association id="Association_1c4jixb">
+    <sourceRef href="#dayType_id" />
+    <targetRef href="#TextAnnotation_1t4zaz9" />
+  </association>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="DMNDiagram_08e4fzy">
+      <dmndi:DMNShape id="dayType_id_di" dmnElementRef="dayType_id">
+        <dc:Bounds height="45" width="125" x="240" y="270" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="literal-expression_di" dmnElementRef="literal-expression">
+        <dc:Bounds height="80" width="180" x="670" y="141" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
 </definitions>
