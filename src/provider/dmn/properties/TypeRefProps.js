@@ -41,23 +41,17 @@ function TypeRef(props) {
   const translate = useService('translate');
 
   const businessObject = getBusinessObject(element);
-  const currentType = (businessObject.variable && businessObject.variable.typeRef) || businessObject.typeRef || 'Any';
+  const currentType = businessObject.variable ? businessObject.variable.typeRef || businessObject.typeRef : 'any';
 
   const getValue = () => currentType;
 
   const setValue = (value) => {
-    if (businessObject.variable) {
-      modeling.updateProperties(element, {
-        variable: {
-          ...businessObject.variable,
-          typeRef: value
-        }
-      });
-    } else {
-      modeling.updateProperties(element, {
+    modeling.updateProperties(element, {
+      variable: {
+        ...businessObject.variable,
         typeRef: value
-      });
-    }
+      }
+    });
   };
   const DEFAULT_DATA_TYPES = [ 'string', 'boolean', 'integer', 'number', 'date', 'time', 'dateTime', 'dayTimeDuration', 'yearMonthDuration', 'any' ];
   const getOptions = () => {

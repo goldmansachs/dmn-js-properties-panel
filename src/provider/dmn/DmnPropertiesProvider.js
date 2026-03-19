@@ -6,6 +6,8 @@ import {
   NameProps
 } from './properties';
 import { TypeRefProps } from './properties/TypeRefProps';
+import { isAny } from 'dmn-js-shared/lib/util/ModelUtil';
+
 
 export default class DmnPropertiesProvider {
 
@@ -31,7 +33,10 @@ function getGroups(element) {
 
   const groups = [
     GeneralGroup(element),
-    DocumentationGroup(element)
+    DocumentationGroup(element),
+    ...(!isAny(element, [ 'dmn:Decision', 'dmn:InputData' ])
+      ? []
+      : [ VariableGroup(element) ])
   ];
 
   // contract: if a group returns null, it should not be displayed at all
@@ -42,8 +47,7 @@ function GeneralGroup(element) {
 
   const entries = [
     ...NameProps({ element }),
-    ...IdProps({ element }),
-    ...(element.businessObject.variable && element.businessObject.variable.typeRef ? TypeRefProps({ element }) : [])
+    ...IdProps({ element })
   ];
 
   return {
@@ -70,3 +74,22 @@ function DocumentationGroup(element) {
     component: Group
   };
 }
+
+function VariableGroup(element) {
+
+  const entries = [
+    ...TypeRefProps({ element })
+  ];
+
+  if (!entries.length) {
+    return null;
+  }
+
+  return {
+    id: 'variable',
+    label: 'Variable',
+    entries,
+    component: Group
+  };
+}
+
